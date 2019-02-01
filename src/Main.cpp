@@ -14,7 +14,7 @@
 
 #include "BinaryTree.h"
 
-#define SIZE_TREE   1000000
+static const uint32_t SIZE_TREE = 1000000;
 
 void printSearch(BinaryTree *t, mydata d){
 
