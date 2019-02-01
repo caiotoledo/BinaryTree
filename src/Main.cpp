@@ -9,6 +9,7 @@
 #include <iostream>
 #include <climits>
 #include <cstdlib>
+#include <ctime>
 #include <vector>
 
 #include "BinaryTree.h"
