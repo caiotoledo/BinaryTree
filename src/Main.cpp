@@ -16,9 +16,31 @@
 
 static const uint32_t SIZE_TREE = 1000000;
 
+class Clock
+{
+protected:
+	clock_t start_s;
+
+public:
+	Clock()
+	{
+		start_s = clock();
+	}
+
+	void StartClock()
+	{
+		start_s = clock();
+	}
+
+	double DiffClock_ms()
+	{
+		return (double)((clock() - start_s) / double(CLOCKS_PER_SEC)) * 1000;
+	}
+};
+
 void printSearch(BinaryTree *t, mydata d){
 
-  int start_s=clock();
+	Clock clk;
 
   std::cout << "Number " << d;
   if ( !t->Search(d) ) {
@@ -26,7 +48,7 @@ void printSearch(BinaryTree *t, mydata d){
   }
   std::cout << " found!" << std::endl;
 
-  std::cout << "Search Time: " << (clock()-start_s)/double(CLOCKS_PER_SEC)*1000 << " ms" << std::endl;
+	std::cout << "Search Time: " << clk.DiffClock_ms() << " ms" << std::endl;
 }
 
 int main() {
@@ -34,13 +56,13 @@ int main() {
 
 	BinaryTree tree;
 
-	int start_s=clock();
+	Clock clk;
 
   for (int i = 0; i < SIZE_TREE; ++i) {
     tree.Insert(rand() % SIZE_TREE);
   }
 
-  std::cout << SIZE_TREE << " Data Insertions in " << (clock()-start_s)/double(CLOCKS_PER_SEC)*1000 << " ms." << std::endl;
+	std::cout << SIZE_TREE << " Data Insertions in " << clk.DiffClock_ms() << " ms." << std::endl;
 
   std::cout << std::endl;
   printSearch(&tree, rand() % SIZE_TREE);
